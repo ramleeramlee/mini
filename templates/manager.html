@@ -147,19 +147,19 @@
                             <!-- 증가 -->
                             <form action="{{url_for('item_add')}}" method="POST">
                                 <input type="hidden" name="item_id" value="{{ item.id }}">
-                                <a href="#" onclick="this.closest('form').submit();" class="bi bi-plus-circle"></a>
+                                <a href="#" onclick="this.closest('form').submit();" class="bi bi-plus-circle" style="font-size: 2rem;"></a>
                             </form>
                             <!-- 감소 -->
                             <form action="{{url_for('item_sub')}}" method="POST">
                                 <input type="hidden" name="item_id" value="{{ item.id }}">
-                                <a href="#" onclick="this.closest('form').submit();" class="bi bi-dash-circle"></a>
+                                <a href="#" onclick="this.closest('form').submit();" class="bi bi-dash-circle" style="font-size: 2rem;"></a>
                             </form>
                         </td>
                         <!-- 삭제 -->
                         <td>
                             <form action="{{url_for('item_del')}}" method="POST">
                                 <input type="hidden" name="item_id" value="{{ item.id }}">
-                                <a href="#" onclick="this.closest('form').submit();" class="bi bi-x-circle"></a>
+                                <a href="#" onclick="this.closest('form').submit();" class="bi bi-x-circle" style="font-size: 2rem;"></a>
                             </form>
                         </td>
                     </tr>
