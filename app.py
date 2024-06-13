@@ -43,10 +43,10 @@ def mnt():
 @app.route("/mnt/create/", methods=["POST"])
 def item_create():
     # form에서 보낸 데이터 받아오기
-    name_receive = request.form["name"]
-    price_receive = request.form["price"]
-    count_receive = request.form["count"]
-    imgUrl_receive = request.form["imgUrl"]
+    name_receive = request.form.get("name")
+    price_receive = request.form.get("price")
+    count_receive = request.form.get("count")
+    imgUrl_receive = request.form.get("imgUrl")
 
     # 데이터를 DB에 저장하기
     item = Items(name=name_receive, price=price_receive, count=count_receive, imgUrl=imgUrl_receive)
@@ -55,13 +55,24 @@ def item_create():
 
     return redirect(url_for('mnt'))
 
-@app.route("/mnt/delete/", methods=["DELETE"])
+@app.route("/mnt/delete/", methods=["POST"])
 def item_del():
     
-    id_receive = request.args.get("item_id")
+    id_receive = request.form.get("item_id")
     item_id_nm = Items.query.filter_by(id=id_receive).first()
     
     db.session.delete(item_id_nm)
+    db.session.commit()
+    
+    return redirect(url_for('mnt'))
+
+@app.route("/mnt/add/", methods=["POST"])
+def item_add():
+    
+    id_receive = request.form.get("item_id")
+    item_count = Items.query.filter_by(id=id_receive).first()
+    
+    db.session.update(item_count)
     db.session.commit()
     
     return redirect(url_for('mnt'))
