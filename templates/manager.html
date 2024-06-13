@@ -83,12 +83,12 @@
 
                 <!-- 증가 버튼 -->
                 <form action="{{url_for('item_add')}}" method="POST">
-                <button type="submit" class="btn btn-dark">+</button>
+                <button type="submit" class="btn btn-dark" value="{{item.id}}" name="item_id">+</button>
                 </form>
 
                 <!-- 감소 버튼 -->
                 <form action="{{url_for('item_sub')}}" method="POST">
-                <button type="submit" class="btn btn-dark">-</button>
+                <button type="submit" class="btn btn-dark" value="{{item.id}}" name="item_id">-</button>
                 </form>
 
                 <!-- 삭제 버튼 -->
