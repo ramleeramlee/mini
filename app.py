@@ -70,10 +70,23 @@ def item_del():
 def item_add():
     
     id_receive = request.form.get("item_id")
-    item_count = Items.query.filter_by(id=id_receive).first()
+    item_id_nm = Items.query.filter_by(id=id_receive).first()
     
-    db.session.update(item_count)
-    db.session.commit()
+    if item_id_nm:
+        item_id_nm.count += 1
+        db.session.commit()
+    
+    return redirect(url_for('mnt'))
+
+@app.route("/mnt/sub/", methods=["POST"])
+def item_sub():
+    
+    id_receive = request.form.get("item_id")
+    item_id_nm = Items.query.filter_by(id=id_receive).first()
+    
+    if item_id_nm:
+        item_id_nm.count -= 1
+        db.session.commit()
     
     return redirect(url_for('mnt'))
 
