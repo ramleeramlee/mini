@@ -33,7 +33,7 @@
     <div class="background-banner">
         <nav class="navbar border-bottom border-bottom-dark d-flex justify-content-space-between">
             <div class="ms-3">
-                <img src="img/logo1.png" width=100px alt="">
+                <img src="{{ url_for('static', filename='logo1.png') }}" width=100px alt="">
             </div>
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
@@ -54,30 +54,6 @@
                 </div>
             </nav>
         </nav>
-
-
-
-        <div class="col-lg-6 mx-auto">
-
-            <div class="px-4 py-3 my-5 text-center">
-
-                <div class="d-grid gap-2 d-flex justify-content-sm-center">
-
-                </div>
-            </div>
-            <div class="float-end">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    물품 등록
-                </button>
-            </div>
-
-        </div>
-
-
-
-
-
 
 
 
@@ -118,10 +94,17 @@
         </div>
 
         <div class="row row-cols-1 row-cols-md-4 g-4 mx-auto w-75 pb-5">
+            <div class="col-lg-6 mx-auto"></div> 
+
             <div class="col-lg-6 mx-auto">
+                <div class="float-end">
+                    <br>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">물품 등록</button>
+                </div>
             </div>
 
-            <table class="table">
+            <table class="table" style="height: 200px; width: 100%; text-align: center; vertical-align: middle;">
                 <thead>
                     <tr>
                         <th scope="col">물품코드</th>
@@ -137,29 +120,37 @@
                 <tbody>
                     {% for item in data %}
                     <tr>
+
                         <td>{{item.id}}</td>
                         <td><img src="{{item.imgUrl}}" class="card-img-top"
                                 style="width: 100px; height: 100px; object-fit: cover;" alt="..."></td>
                         <td>{{item.name}}</td>
                         <td>{{item.price}} 원</td>
                         <td>{{item.count}} 개</td>
+
                         <td>
-                            <!-- 증가 -->
-                            <form action="{{url_for('item_add')}}" method="POST">
-                                <input type="hidden" name="item_id" value="{{ item.id }}">
-                                <a href="#" onclick="this.closest('form').submit();" class="bi bi-plus-circle" style="font-size: 2rem;"></a>
-                            </form>
-                            <!-- 감소 -->
-                            <form action="{{url_for('item_sub')}}" method="POST">
-                                <input type="hidden" name="item_id" value="{{ item.id }}">
-                                <a href="#" onclick="this.closest('form').submit();" class="bi bi-dash-circle" style="font-size: 2rem;"></a>
-                            </form>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <!-- 증가 -->
+                                <form action="{{url_for('item_add')}}" method="POST">
+                                    <input type="hidden" name="item_id" value="{{ item.id }}">
+                                    <a href="#" onclick="this.closest('form').submit();" class="bi bi-plus-circle"
+                                        style="font-size: 1.5rem;"></a>
+                                </form>
+                                &nbsp
+                                <!-- 감소 -->
+                                <form action="{{url_for('item_sub')}}" method="POST">
+                                    <input type="hidden" name="item_id" value="{{ item.id }}">
+                                    <a href="#" onclick="this.closest('form').submit();" class="bi bi-dash-circle"
+                                        style="font-size: 1.5rem;"></a>
+                                </form>
+                            </div>
                         </td>
                         <!-- 삭제 -->
                         <td>
                             <form action="{{url_for('item_del')}}" method="POST">
                                 <input type="hidden" name="item_id" value="{{ item.id }}">
-                                <a href="#" onclick="this.closest('form').submit();" class="bi bi-x-circle" style="font-size: 2rem;"></a>
+                                <a href="#" onclick="this.closest('form').submit();" class="bi bi-x-circle"
+                                    style="font-size: 1.5rem;"></a>
                             </form>
                         </td>
                     </tr>
